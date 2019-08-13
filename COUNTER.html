@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add React in One Minute</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+    class Counter extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {count: 0};
+      // Привязка необходима, чтобы сделать this доступным в коллбэке
+      this.onIncrease = this.onIncrease.bind(this);
+      this.onDecrease = this.onDecrease.bind(this);
+    }
+
+    onIncrease(){
+      this.setState(prevState => ({
+        count: prevState.count + 1
+      }))
+    }
+
+    onDecrease(){
+      this.setState(prevState => ({
+        count: prevState.count - 1
+      }))
+    }
+
+    render() {
+      return (
+
+      <button type="button" class="btn btn-warning">
+          <h2 class="alert alert-dismissible alert-info">COUNTER: {this.state.count}</h2>
+          <button type="button" class="btn btn-primary" onClick={this.onDecrease}>-</button>
+          <button type="button" class="btn btn-danger" onClick={this.onIncrease}>+</button>
+      </button>
+      );
+    }
+  }
+    ReactDOM.render(<Counter/>, document.getElementById('root'));
+    </script>
+  </body>
+</html>
